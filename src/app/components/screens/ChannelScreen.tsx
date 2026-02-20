@@ -74,9 +74,21 @@ export default function ChannelScreen({ channel }: ChannelScreenProps) {
         >
           <TextInput
             multiline
+            placeholder="Enter your email!!!"
+            autoFocus
+            onChangeText={setMessage}
+            value={message}
+            onSubmitEditing={handleSendMessage}
             style={{
               flexGrow: 1,
               flexShrink: 1,
+              fontSize: 20,
+              borderWidth: 1,
+              borderColor: "gray",
+              borderRadius: 50,
+              paddingHorizontal: 16,
+              paddingVertical: 12,
+              backgroundColor: "white",
             }}
           />
           <Pressable
