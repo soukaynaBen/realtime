@@ -5,7 +5,6 @@ import AuthScreen from "./components/screens/AuthScreen";
 import HomeScreen from "./components/screens/HomeScreen";
 
 export default function App() {
-  db;
   return (
     <View style={{ flex: 1 }}>
       <db.SignedIn>

@@ -28,6 +28,16 @@ const _schema = i.schema({
     }),
     profiles: i.entity({
       displayName: i.string(),
+      handle: i.string().unique().indexed(),
+    }),
+    posts: i.entity({
+      color: i.string(),
+      content: i.string(),
+      timestamp: i.number(),
+    }),
+    likes: i.entity({
+      userId: i.string().indexed(),
+      postId: i.string().indexed(),
     }),
   },
   links: {
@@ -94,6 +104,45 @@ const _schema = i.schema({
         on: "channels",
         has: "many",
         label: "messages",
+      },
+    },
+    userLikes: {
+      forward: {
+        on: "likes",
+        has: "one",
+        label: "user",
+        onDelete: "cascade",
+      },
+      reverse: {
+        on: "profiles",
+        has: "many",
+        label: "likes",
+      },
+    },
+    postAuthors: {
+      forward: {
+        on: "posts",
+        has: "one",
+        label: "author",
+        onDelete: "cascade",
+      },
+      reverse: {
+        on: "profiles",
+        has: "many",
+        label: "posts",
+      },
+    },
+    postLikes: {
+      forward: {
+        on: "likes",
+        has: "one",
+        label: "post",
+        onDelete: "cascade",
+      },
+      reverse: {
+        on: "posts",
+        has: "many",
+        label: "likes",
       },
     },
   },

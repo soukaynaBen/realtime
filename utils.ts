@@ -1,14 +1,22 @@
 import { listProfilesQuery } from "@/instant.queries";
 import schema from "@/instant.schema";
+import { init as adminInit } from "@instantdb/admin";
 import { init } from "@instantdb/react-native";
 
 const APP_ID = process.env.EXPO_PUBLIC_INSTANT_APP_ID;
+const ADMIN_TOKEN = process.env.INSTANT_APP_ADMIN_TOKEN;
 
 if (!APP_ID) {
   throw new Error("You need to set your app id");
 }
 
-export const db = init({ appId: APP_ID, schema: schema });
+export const db = init({ appId: APP_ID, schema: schema, devtool: false });
+
+export const adminDb = adminInit({
+  appId: APP_ID,
+  adminToken: ADMIN_TOKEN!,
+  schema,
+});
 
 export function useProfile() {
   const { user, error: userError } = db.useAuth();

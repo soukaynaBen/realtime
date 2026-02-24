@@ -27,7 +27,7 @@ export default function ChannelsList() {
       <Text style={{ fontWeight: "bold", fontSize: 17 }}>
         Available channels
       </Text>
-      <View style={{ marginTop: 20 }}>
+      <View style={{ marginTop: 20, gap: 16 }}>
         {data.channels.map((channel) => (
           <Pressable
             key={channel.id}
